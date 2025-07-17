@@ -1,0 +1,82 @@
+estudiante = {
+    1001: ["Benjamín Solis", 22, "Ingeniería", "benjamin@example.com", "Santiago"],
+    1002: ["Camila Rojas", 20, "Biología", "camila@example.com", "Valparaíso"],
+    1003: ["Diego Pérez", 23, "Derecho", "diego@example.com", "Concepción"],
+    1004: ["Valentina López", 21, "Psicología", "valentina@example.com", "La Serena"],
+    1005: ["Javier Torres", 24, "Arquitectura", "javier@example.com", "Antofagasta"]
+}
+
+asignatura = {
+    1001: ["Matemáticas", "3 horas", "Lunes y Miércoles", "Sala 101", "Prof. Ramírez"],
+    1002: ["Historia", "2 horas", "Martes", "Sala 202", "Prof. González"],
+    1003: ["Física", "3 horas", "Jueves", "Sala 303", "Prof. Silva"],
+    1004: ["Inglés", "2 horas", "Viernes", "Sala 105", "Prof. Smith"],
+    1005: ["Programación", "4 horas", "Lunes y Viernes", "Lab 1", "Prof. Torres"]
+}
+def Errores_buscar():
+    while True:
+        try:
+            id = int(input("Ingrese el id de usuario: "))
+            return id
+        except ValueError:
+            print("error, ingrese un valor valido")
+            continue
+
+
+def Buscar_Estudiante():
+    id = Errores_buscar()
+    for Usuario in estudiante:
+        if Usuario == id: 
+            j = 0
+            for i in estudiante[Usuario]:
+                if j == 0:
+                    print("NOMBRE:", i)
+                if j == 1:
+                    print("EDAD:", i)
+                if j == 2:
+                    print("CARRERA:", i)
+                if j == 3:
+                    print("CORREO:", i)
+                if j == 4:
+                    print("CIUDAD:", i)
+                j = j + 1
+            return
+    print("el id del estudiante no se encuentra")
+def agregar_estudiante():
+    id = Errores_buscar()
+    for Usuario in estudiante:
+        if Usuario == id:
+            print("el id ya se encuentra ocupado")
+            return 
+    while True:
+        try:
+            Nombre = input("ingrese el nombre: ")
+            Edad = int(input("ingrese la edad: "))
+            Carrera = input("Ingrese la carrera")
+            Carrera = Carrera.upper()
+            Correo = input("Ingrese el correo: ")
+            Ciudad = input("ingrese la ciudad: ")
+            Ciudad = Ciudad.upper()
+            break
+        except ValueError:
+            print("error, ingrese los valores correctamente")
+            continue
+    estudiante[id] = [Nombre, Edad, Carrera, Correo, Ciudad]
+    return 
+while True:
+    print("-"*10)
+    print(""" Menu principal
+    1. INGRESAR ESTUDIANTE
+    2. BUSCAR ESTUDIANTE
+    3. ELIMINAR USUARIO
+    4. SALIR""")
+    opcion = input("Ingrese una de las opciones numericas: ")
+    match opcion:
+        case "1":
+            agregar_estudiante()
+        case "2":
+            Buscar_Estudiante()
+        case "3":
+            break
+        case "4":
+            break
